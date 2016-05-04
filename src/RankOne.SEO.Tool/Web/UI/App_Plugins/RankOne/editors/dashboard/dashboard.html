@@ -1,0 +1,41 @@
+﻿<div id="rankOne" ng-controller="rankOneDashboard">
+
+    <umb-load-indicator ng-show="loading"></umb-load-indicator>
+
+    <div ng-show="error">
+        {{error}}
+    </div>
+
+    <div ng-show="!loading && !error">
+        <h1>
+            <localize key="dashboard_title"></localize>
+        </h1>
+        <div ng-click="setFilter('')" class="clickable">
+            <circle progress="overallScore"></circle>
+        </div>
+
+        <div class="summary clearfix">
+            <div class="summary-block clickable" ng-click="setFilter('error')">
+                <strong class="error">{{errorCount}}</strong>
+                <small>Errors</small>
+            </div>
+            <div class="summary-block clickable" ng-click="setFilter('warning')">
+                <strong class="warning">{{warningCount}}</strong>
+                <small>Warnings</small>
+            </div>
+            <div class="summary-block clickable" ng-click="setFilter('hint')">
+                <strong class="pointer">{{hintCount}}</strong>
+                <small>Hints</small>
+            </div>
+            <div class="summary-block clickable" ng-click="setFilter('success')">
+                <strong class="info">{{successCount}}</strong>
+                <small>Passed checks</small>
+            </div>
+        </div>
+
+        <div class="accordion">
+            <accordion result="analyzerResults" filter="filter" ng-repeat="analyzerResults in analyzeResults.AnalyzerResults">
+            </accordion>
+        </div>
+    </div>
+</div>

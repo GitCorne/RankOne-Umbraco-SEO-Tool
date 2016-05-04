@@ -13,7 +13,7 @@
     <FileAlignment>512</FileAlignment>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
-	<ResolveAssemblyReferenceIgnoreTargetFrameworkAttributeVersionMismatch>true</ResolveAssemblyReferenceIgnoreTargetFrameworkAttributeVersionMismatch>
+    <ResolveAssemblyReferenceIgnoreTargetFrameworkAttributeVersionMismatch>true</ResolveAssemblyReferenceIgnoreTargetFrameworkAttributeVersionMismatch>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -69,9 +69,9 @@
       <HintPath>..\packages\UmbracoCms.Core.7.1.4\lib\Examine.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="HtmlAgilityPack">
-      <HintPath>..\packages\HtmlAgilityPack.1.4.6\lib\Net45\HtmlAgilityPack.dll</HintPath>
-      <Private>False</Private>
+    <Reference Include="HtmlAgilityPack, Version=1.4.9.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <HintPath>..\packages\HtmlAgilityPack.1.4.9\lib\Net45\HtmlAgilityPack.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="ICSharpCode.SharpZipLib">
       <HintPath>..\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
@@ -230,55 +230,66 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\VersionInfo.cs" />
-    <Compile Include="PropertyEditors\NestedContentPropertyEditor.cs" />
     <Compile Include="Web\Controllers\RankOneApiController.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Web\UI\App_Plugins\RankOne\badge.directive.html" />
-    <Content Include="Web\UI\App_Plugins\RankOne\badge.directive.js" />
-    <Content Include="Web\UI\App_Plugins\RankOne\checks.html" />
-    <Content Include="Web\UI\App_Plugins\RankOne\circle.css" />
-    <Content Include="Web\UI\App_Plugins\RankOne\circle.directive.html" />
-    <Content Include="Web\UI\App_Plugins\RankOne\circle.directive.js" />
-    <Content Include="Web\UI\App_Plugins\RankOne\cog-example.js" />
-    <Content Include="Web\UI\App_Plugins\RankOne\cog.css" />
-    <Content Include="Web\UI\App_Plugins\RankOne\cog.svg" />
-    <Content Include="Web\UI\App_Plugins\RankOne\icon.directive.html" />
-    <Content Include="Web\UI\App_Plugins\RankOne\icon.directive.js" />
-    <Content Include="Web\UI\App_Plugins\RankOne\information.directive.html" />
-    <Content Include="Web\UI\App_Plugins\RankOne\information.directive.js" />
-    <Content Include="Web\UI\App_Plugins\RankOne\lang\en-us.xml" />
-    <Content Include="Web\UI\App_Plugins\RankOne\RankOne.html" />
-    <Content Include="Web\UI\App_Plugins\RankOne\result.css" />
-    <Content Include="Web\UI\App_Plugins\RankOne\result.directive.html" />
-    <Content Include="Web\UI\App_Plugins\RankOne\result.directive.js" />
-    <Content Include="Web\UI\App_Plugins\RankOne\result.service.js" />
-    <Content Include="Web\UI\App_Plugins\RankOne\resultline.directive.html" />
-    <Content Include="Web\UI\App_Plugins\RankOne\resultline.directive.js" />
-    <Content Include="Web\UI\App_Plugins\RankOne\score.service.js" />
-    <Content Include="Web\UI\App_Plugins\RankOne\section.css" />
-    <Content Include="Web\UI\App_Plugins\RankOne\section.directive.html" />
-    <Content Include="Web\UI\App_Plugins\RankOne\section.directive.js" />
-    <Content Include="Web\UI\App_Plugins\RankOne\seoTips.controller.js" />
+    <Content Include="Web\UI\App_Plugins\RankOne\directives\badge\badge.directive.html" />
+    <Content Include="Web\UI\App_Plugins\RankOne\directives\badge\badge.directive.js" />
+    <Content Include="Web\UI\App_Plugins\RankOne\directives\checkboxlist\checkboxlist.directive.html" />
+    <Content Include="Web\UI\App_Plugins\RankOne\directives\checkboxlist\checkboxlist.directive.js" />
+    <Content Include="Web\UI\App_Plugins\RankOne\directives\circle\circle.directive.html" />
+    <Content Include="Web\UI\App_Plugins\RankOne\directives\circle\circle.directive.js" />
+    <Content Include="Web\UI\App_Plugins\RankOne\editors\result-preview\result-preview.controller.js" />
+    <Content Include="Web\UI\App_Plugins\RankOne\editors\result-preview\result-preview.html" />
+    <Content Include="Web\UI\App_Plugins\RankOne\editors\summary\summary.controller.js" />
+    <Content Include="Web\UI\App_Plugins\RankOne\editors\summary\summary.html" />
+    <Content Include="Web\UI\App_Plugins\RankOne\filters\analyzerFilter.js" />
+    <Content Include="Web\UI\App_Plugins\RankOne\filters\typeFilter.js" />
+    <Content Include="Web\UI\App_Plugins\RankOne\directives\icon\icon.directive.html" />
+    <Content Include="Web\UI\App_Plugins\RankOne\directives\icon\icon.directive.js" />
+    <Content Include="Web\UI\App_Plugins\RankOne\directives\information\information.directive.html" />
+    <Content Include="Web\UI\App_Plugins\RankOne\directives\information\information.directive.js" />
+    <Content Include="Web\UI\App_Plugins\RankOne\lang\en-us.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web\UI\App_Plugins\RankOne\editors\dashboard\dashboard.html" />
+    <Content Include="Web\UI\App_Plugins\RankOne\directives\result\result.directive.html" />
+    <Content Include="Web\UI\App_Plugins\RankOne\directives\result\result.directive.js" />
+    <Content Include="Web\UI\App_Plugins\RankOne\prevalue-editors\analyzerSelector\analyzerSelector.controller.js" />
+    <Content Include="Web\UI\App_Plugins\RankOne\prevalue-editors\analyzerSelector\analyzerSelector.html" />
+    <Content Include="Web\UI\App_Plugins\RankOne\prevalue-editors\typeSelector\typeSelector.html" />
+    <Content Include="Web\UI\App_Plugins\RankOne\prevalue-editors\typeSelector\typeSelector.controller.js" />
+    <Content Include="Web\UI\App_Plugins\RankOne\services\url.service.js" />
+    <Content Include="Web\UI\App_Plugins\RankOne\services\result.service.js" />
+    <Content Include="Web\UI\App_Plugins\RankOne\directives\resultline\resultline.directive.html" />
+    <Content Include="Web\UI\App_Plugins\RankOne\directives\resultline\resultline.directive.js" />
+    <Content Include="Web\UI\App_Plugins\RankOne\services\score.service.js" />
+    <Content Include="Web\UI\App_Plugins\RankOne\directives\accordion\accordion.directive.html" />
+    <Content Include="Web\UI\App_Plugins\RankOne\directives\accordion\accordion.directive.js" />
+    <Content Include="Web\UI\App_Plugins\RankOne\editors\dashboard\dashboard.controller.js" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="less\google.less" />
+    <None Include="less\settings.less" />
+    <None Include="less\styles.less" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
+    <None Include="less\accordion.less" />
+    <None Include="less\circle.less" />
+    <None Include="less\colors.less" />
+    <None Include="less\information.less" />
+    <None Include="less\badges.less" />
+    <None Include="less\loader.less" />
+    <None Include="less\result.less" />
     <None Include="Web\UI\App_Plugins\RankOne\package.manifest" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Helpers\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\RankOne.SEO.Business\RankOne.Business.csproj">
       <Project>{f1c0ebf4-5cfe-4cfd-ac78-56e4d7315971}</Project>
       <Name>RankOne.Business</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\RankOne.SEO.HtmlParserSharp\RankOne.HtmlParser.csproj">
-      <Project>{fd150915-d34f-436a-92c1-80aa505da754}</Project>
-      <Name>RankOne.HtmlParser</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

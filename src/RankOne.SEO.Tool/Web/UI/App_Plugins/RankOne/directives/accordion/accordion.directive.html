@@ -1,0 +1,20 @@
+﻿<div class="clearfix expander">
+    <label ng-click="expanded = !expanded" ng-class="{'expanded':expanded}">
+        <localize key="{{result.Alias}}_title"></localize>
+        <badge result="result"></badge>
+    </label>
+    <section ng-show="expanded">
+        <information information="information" ng-repeat="information in result.Analysis.Information"></information>
+        <div class="columns">
+            <div class="column">
+                <result result="analyzeResult" ng-repeat="analyzeResult in column1"></result>
+            </div>
+            <div class="column">
+                <result result="analyzeResult" ng-repeat="analyzeResult in column2"></result>
+            </div>
+        </div>
+        <p ng-show="!result.Analysis.Results.length">
+            <localize key="dashboard_no_results"></localize>
+        </p>
+    </section>
+</div>

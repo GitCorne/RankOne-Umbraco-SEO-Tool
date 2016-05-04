@@ -1,20 +1,19 @@
 ﻿using System.Diagnostics;
 using System.Net;
 using System.Text;
-using System.Xml.Linq;
-using HtmlParserSharp;
-using RankOne.Business.Analyzers;
+using HtmlAgilityPack;
 using RankOne.Business.Models;
+using RankOne.Business.Summaries;
 
 namespace RankOne.Business.Services
 {
     public class AnalyzeService
     {
-        private SimpleHtmlParser _htmlParser;
+        private readonly HtmlDocument _htmlParser;
 
         public AnalyzeService()
         {
-            _htmlParser = new SimpleHtmlParser();
+            _htmlParser = new HtmlDocument();
         }
 
         public PageAnalysis AnalyzeWebPage(string url)
@@ -28,25 +27,25 @@ namespace RankOne.Business.Services
             {
                 webpage.HtmlResult = GetHtml(url);
 
-                var htmlAnalyzer = new HtmlAnalyzer(webpage.HtmlResult);
+                var htmlAnalyzer = new HtmlSummary(webpage.HtmlResult);
                 webpage.AnalyzerResults.Add(new AnalyzerResult
                 {
-                    Title = "htmlanalyzer_title",
+                    Alias = "htmlanalyzer",
                     Analysis = htmlAnalyzer.GetAnalysis()
                 });
 
-                var keywordAnalyzer = new KeywordAnalyzer(webpage.HtmlResult);
+                var keywordAnalyzer = new KeywordSummary(webpage.HtmlResult);
                 webpage.AnalyzerResults.Add(new AnalyzerResult
                 {
-                    Title = "keywordanalyzer_title",
+                    Alias = "keywordanalyzer",
                     Analysis = keywordAnalyzer.GetAnalysis()
                 });
 
-                var speedAnalyzer = new SpeedAnalyzer(webpage.HtmlResult);
+                var performanceAnalyzer = new PerformanceSummary(webpage.HtmlResult);
                 webpage.AnalyzerResults.Add(new AnalyzerResult
                 {
-                    Title = "speedanalyzer_title",
-                    Analysis = speedAnalyzer.GetAnalysis()
+                    Alias = "performanceanalyzer",
+                    Analysis = performanceAnalyzer.GetAnalysis()
                 });
             }
             catch (WebException ex)
@@ -58,7 +57,7 @@ namespace RankOne.Business.Services
 
         private HtmlResult GetHtml(string url)
         {
-            Stopwatch stopwatch = new Stopwatch();
+            var stopwatch = new Stopwatch();
 
             stopwatch.Start();
 
@@ -66,8 +65,7 @@ namespace RankOne.Business.Services
 
             stopwatch.Stop();
 
-            var xmlDocument = _htmlParser.ParseString(html);
-            var xDocument = XDocument.Parse(xmlDocument.OuterXml);
+            _htmlParser.LoadHtml(html);
 
             return new HtmlResult
             {
@@ -75,8 +73,8 @@ namespace RankOne.Business.Services
                 Html = html,
                 Size = Encoding.ASCII.GetByteCount(html),
                 ServerResponseTime = stopwatch.ElapsedMilliseconds,
-                Document = xDocument
-            };
+                Document = _htmlParser.DocumentNode
+        };
         }
     }
 }

@@ -1,11 +1,11 @@
-﻿using System.Xml.Linq;
-using RankOne.Business;
+﻿using HtmlAgilityPack;
 using RankOne.Business.Models;
-using SEO.Umbraco.Extensions.Models;
+using RankOne.Business.Interfaces;
+using Umbraco.Web.Media.EmbedProviders.Settings;
 
-namespace SEO.Umbraco.Extensions.Analyzers
+namespace RankOne.Business.Analyzers
 {
-    public abstract class BaseAnalyzer
+    public abstract class BaseAnalyzer : IAnalyzer
     {
         protected HtmlHelper HtmlHelper;
 
@@ -14,6 +14,6 @@ namespace SEO.Umbraco.Extensions.Analyzers
             HtmlHelper = new HtmlHelper();
         }
 
-        public abstract AnalyzeResult Analyse(XDocument document);
+        public abstract AnalyzeResult Analyse(HtmlNode document, params object[] additionalValues);
     }
 }

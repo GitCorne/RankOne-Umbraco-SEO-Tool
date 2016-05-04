@@ -12,6 +12,7 @@ _ReSharper.*
 Thumbs.db
 .DS_Store
 *.log
+*.bat
 applicationhost.config
 
 artifacts/
@@ -30,3 +31,5 @@ tmp/
 [Oo]bj/
 [Pp]ackages/
 VersionInfo.cs
+*.nupkg
+*.zip

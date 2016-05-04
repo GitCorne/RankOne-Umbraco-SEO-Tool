@@ -9,7 +9,12 @@ namespace RankOne.Business.Models
             ResultRules = new List<ResultRule>();
         }
 
-        public string Title { get; set; }
+        public string Alias { get; set; }
         public List<ResultRule> ResultRules { get; set; }
+
+        public void AddResultRule(string code, string type)
+        {
+            ResultRules.Add(new ResultRule { Code = code, Type = type });
+        }
     }
 }

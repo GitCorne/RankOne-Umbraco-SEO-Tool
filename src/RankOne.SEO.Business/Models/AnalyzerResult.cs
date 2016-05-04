@@ -2,8 +2,7 @@
 {
     public class AnalyzerResult
     {
-        public string Title { get; set; }
-
+        public string Alias { get; set; }
         public Analysis Analysis { get; set; }
     }
 }
